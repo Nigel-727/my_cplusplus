@@ -1,7 +1,7 @@
-/* MYGENRIC.HPP // Saj†t generikus adatszerkezetek template-tel
-*	÷rta: Bakk Zolt†n <nigel@valerie.inf.elte.hu>
- *		1999. m†jus 27-tãl
-*  Kîrnyezet: DOS; >>>>>>>>> Ford°that¢: Borland C++3.1;
+/* MYGENRIC.HPP // Saj√°t generikus adatszerkezetek template-tel
+*	√çrta: Bakk Zolt√°n <nigel@valerie.inf.elte.hu>
+ *		1999. m√°jus 27-t≈ël
+*  K√∂rnyezet: DOS; >>>>>>>>> Ford√≠that√≥: Borland C++3.1;
  */
 
 #ifndef __MYGENRIC_HPP
@@ -14,15 +14,15 @@
 #include "MAINTYPE.H"
 
 template <class T,class Pr> class MyPriorityQueueItem;
-template <class T,class Pr> class MyPriorityQueue; // elãdeklar†ci¢
+template <class T,class Pr> class MyPriorityQueue; // el≈ëdeklar√°ci√≥
 template <class T> class MyQueue;
 template <class T> class MyStack;
 template <class T> class MyList;
 template <class T> class MyListItem;
 
      // ------------------------ MyPriorityQueueItem -----------------------------
-     template <class T,class Pr> // A priorit†si sor elemt°pusa
-     class MyPriorityQueueItem   // priv†t oszt†ly
+     template <class T,class Pr> // A priorit√°si sor elemt√≠pusa
+     class MyPriorityQueueItem   // priv√°t oszt√°ly
      {
        friend class MyPriorityQueue< T,Pr >;
        friend ostream& operator<< (ostream&,MyPriorityQueueItem<T,Pr>&);
@@ -45,7 +45,7 @@ template <class T> class MyListItem;
 	MyPriorityQueueItem& operator= (const MyPriorityQueueItem<T,Pr>& item)
 	  { data=item.data; priority=item.priority; return *this;}
 
-  // A kîvetkezã oper†torok a  priority  szerinti rendezettsÇget seg°tik:
+  // A k√∂vetkez≈ë oper√°torok a  priority  szerinti rendezetts√©get seg√≠tik:
 	int operator== (const MyPriorityQueueItem<T,Pr>& item) const
 	  { return priority==item.priority; }
 	int operator!= (const MyPriorityQueueItem<T,Pr>& item) const
@@ -61,7 +61,7 @@ template <class T> class MyListItem;
   // ...
      };
 
-// --------------------------- GLOBµLIS FöGGVêNY ----------------------------
+// --------------------------- GLOB√ÅLIS F√úGGV√âNY ----------------------------
 template <class T,class Pr>
 ostream& operator<< (ostream& os,MyPriorityQueueItem<T,Pr>& item)
 {
@@ -71,9 +71,9 @@ ostream& operator<< (ostream& os,MyPriorityQueueItem<T,Pr>& item)
 
 // ------------------------------- MyListItem -------------------------------
 template <class T>
-class MyListItem // list†k eleme, priv†t oszt†ly
+class MyListItem // list√°k eleme, priv√°t oszt√°ly
 {
- friend class MyList<T>; // elÇg is, ha csak innen l†tszik:
+ friend class MyList<T>; // el√©g is, ha csak innen l√°tszik:
  friend ostream& operator<< (ostream& os,const MyList<T>& ml);
  private:
    T* data;
@@ -87,7 +87,7 @@ class MyListItem // list†k eleme, priv†t oszt†ly
 
 // ------------------------------- MyList -----------------------------------
 template <class T>
-class MyList   // egyir†ny£ lista
+class MyList   // egyir√°ny√∫ lista
 {
  friend ostream& operator<< (ostream& os,const MyList<T>&);
  private:
@@ -106,56 +106,56 @@ class MyList   // egyir†ny£ lista
    size_t GetSize() const { return size; }
 
    T& Value()
-     { return *(current->data); } // ElemêrtÇk() Çs ElemM¢dos°t() egyben
+     { return *(current->data); } // Elem√ârt√©k() √©s ElemM√≥dos√≠t() egyben
 
-   bool isEmpty() const { return bool(size==0); } // Åres-e?
+   bool isEmpty() const { return bool(size==0); } // √ºres-e?
 
-   // Az al†bbi kÇt fv. az ÅressÇ teszi a list†t -- öres()
+   // Az al√°bbi k√©t fv. az √ºress√© teszi a list√°t -- √úres()
    void Clear();
    MyList& operator= (int i)
     { if (i==0) Clear();
       return *this;
     }
 
-   int  PushFront(const T&e);    // ElejÇre(e) - besz£r
-   int  PushBack (const T& e);    // VÇgÇre (e) - besz£r
+   int  PushFront(const T&e);    // Elej√©re(e) - besz√∫r
+   int  PushBack (const T& e);    // V√©g√©re (e) - besz√∫r
 				 // u.ez lesz: MyList operator+ (const T&e)
 
-   int     Remove();              // az aktu†lisat tîrli; vissza: sikeressÇg
-   size_t  Remove(const T& e);    // e ÇrtÇk˚ eleme(ke)t tîrli - vissza: h†ny ilyen volt
+   int     Remove();              // az aktu√°lisat t√∂rli; vissza: sikeress√©g
+   size_t  Remove(const T& e);    // e √©rt√©k≈± eleme(ke)t t√∂rli - vissza: h√°ny ilyen volt
 
-   size_t  hasMember(const T& e) const; // e h†nyszor van benne a list†ban?
+   size_t  hasMember(const T& e) const; // e h√°nyszor van benne a list√°ban?
 
    MyList& operator= (const MyList< T >& L); // Lista=Lista1
    int     operator==(const MyList< T >& L) const; // Lista==Lista1?
 
-   void GoFront() { current=first; }  // Elsãre()   - †ll
-   void GoBack () { current=last;}    // Utols¢ra() - †ll
+   void GoFront() { current=first; }  // Els≈ëre()   - √°ll
+   void GoBack () { current=last;}    // Utols√≥ra() - √°ll
 
-   T* operator() (); // visszaadja az aktu†lisra mutat¢t Çs a kîvetkezãre lÇp
-		     // (ez †ll°tja a current-et)
+   T* operator() (); // visszaadja az aktu√°lisra mutat√≥t √©s a k√∂vetkez≈ëre l√©p
+		     // (ez √°ll√≠tja a current-et)
 
-   void Print() const; // ki°rja az egÇsz list†t (ostream)
+   void Print() const; // ki√≠rja az eg√©sz list√°t (ostream)
 
 
-//  . . . . . . . . . . . .  KiegÇsz°tÇsek: . . . . . . . . . . .  . . . . .
+//  . . . . . . . . . . . .  Kieg√©sz√≠t√©sek: . . . . . . . . . . .  . . . . .
 
    T* Front() const
      { return first ? (first->data) : 0; }
-   T& operator[] (size_t i); // ElemêrtÇk(), ElemM¢dos°t() - az i. listaelemre
-			     // Kell mÇg: i. elemet tîrîld ki!
+   T& operator[] (size_t i); // Elem√ârt√©k(), ElemM√≥dos√≠t() - az i. listaelemre
+			     // Kell m√©g: i. elemet t√∂r√∂ld ki!
 
-   // Az al†bbiak nîvekvãbe rendezett list†ra vonatkoznak:
-   int  InsertBehind(const T&); // nagys†g szerint, az elejÇrãl indulva, a legutols¢ e ÇrtÇk˚ elem mîgÇ besz£r
+   // Az al√°bbiak n√∂vekv≈ëbe rendezett list√°ra vonatkoznak:
+   int  InsertBehind(const T&); // nagys√°g szerint, az elej√©r≈ël indulva, a legutols√≥ e √©rt√©k≈± elem m√∂g√© besz√∫r
 
-// mÇg nincs kÇsz:
-   void Sort() {return;}   // T-nek kell legyenek <,== oper†torai
+// m√©g nincs k√©sz:
+   void Sort() {return;}   // T-nek kell legyenek <,== oper√°torai
    int  InsertBefore() {return 0;} //
 
 //  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 };
 
-// :::::::::::::::::::::::::: GLOBµLIS FV-EK ::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::: GLOB√ÅLIS FV-EK ::::::::::::::::::::::::::::::::
 template <class T>
 ostream& operator<< (ostream& os,const MyList<T>& ml)
 {
@@ -174,9 +174,9 @@ ostream& operator<< (ostream& os,const MyList<T>& ml)
 template <class T>
 MyList<T>::MyList(const MyList<T>& L): size(0),first(0),last(0),current(0)
 {
-  MyListItem<T> *pL = L.first; //lehet, mert egyazon oszt†lyba tartoznak
+  MyListItem<T> *pL = L.first; //lehet, mert egyazon oszt√°lyba tartoznak
   while (pL) {
-    PushBack(*(pL->data)); // m†r kÇsz tagfÅggvÇnyt haszn†l fel
+    PushBack(*(pL->data)); // m√°r k√©sz tagf√ºggv√©nyt haszn√°l fel
     pL=pL->next;
   }
 }
@@ -186,13 +186,13 @@ template <class T>
 MyList<T>& MyList<T>::operator= (const MyList<T>& L)
 {
 #ifdef DEBUG
-  cout << "\n\tMyList<T>& MyList<T>::operator= (const MyList<T>& L) h°v†sa\n";
+  cout << "\n\tMyList<T>& MyList<T>::operator= (const MyList<T>& L) h√≠v√°sa\n";
 #endif
-  if (&L != this) { // m†r lÇtezã objektumok esetÇn ezt a hib†t sem lehet kiz†rni
-    Clear(); // jelen objektum adatainak tîrlÇse
-    MyListItem<T> *pL = L.first; //lehet, mert egyazon oszt†lyba tartoznak
+  if (&L != this) { // m√°r l√©tez≈ë objektumok eset√©n ezt a hib√°t sem lehet kiz√°rni
+    Clear(); // jelen objektum adatainak t√∂rl√©se
+    MyListItem<T> *pL = L.first; //lehet, mert egyazon oszt√°lyba tartoznak
     while (pL) {
-      PushBack(*(pL->data)); // m†r kÇsz tagfÅggvÇnyt haszn†l fel
+      PushBack(*(pL->data)); // m√°r k√©sz tagf√ºggv√©nyt haszn√°l fel
       pL=pL->next;
     }
   }
@@ -215,16 +215,16 @@ template <class T>
 size_t MyList<T>::Remove(const T& e)
 {
   if (size<1) return 0;
-  size_t db=0;               // ah†nyat tîrlÅnk, lesz a fv.ÇrtÇk
+  size_t db=0;               // ah√°nyat t√∂rl√ºnk, lesz a fv.√©rt√©k
   MyListItem<T> *p = first;
-  while (p && *(p->data)==e) { // am°g az elejÇn van a tîrlendã ÇrtÇk
+  while (p && *(p->data)==e) { // am√≠g az elej√©n van a t√∂rlend≈ë √©rt√©k
     MyListItem <T> *tmp=p->next;
-    if (p==last) last=0; // ha az utols¢t is kitîrîltÅk volna
+    if (p==last) last=0; // ha az utols√≥t is kit√∂r√∂lt√ºk volna
     if (current==last) current=0;
     delete p; --size; ++db;
     p=first=tmp;
   }
-  // mostm†r m†s ÇrtÇkre mutat a p:
+  // mostm√°r m√°s √©rt√©kre mutat a p:
   if (p) {
     MyListItem<T> *prev=p;
     for (p=p->next;p;p=p->next) {
@@ -232,16 +232,16 @@ size_t MyList<T>::Remove(const T& e)
 	while (*(p->data) == e) {
 	  MyListItem<T> *tmp=p;
 	  p=p->next;
-	  if (tmp==last) last=prev;  // ha az utols¢t is tîrîltÅk volna
+	  if (tmp==last) last=prev;  // ha az utols√≥t is t√∂r√∂lt√ºk volna
 	  if (tmp==current) current=prev;
 	  delete tmp; --size; ++db;
 	}
-	prev->next=p; // az elsã, m†r nem e ÇrtÇk˚ elem
+	prev->next=p; // az els≈ë, m√°r nem e √©rt√©k≈± elem
       } // if...
       prev=p;
     } // for...
   }
-  return db; // h†nyat tîrîltÅnk
+  return db; // h√°nyat t√∂r√∂lt√ºnk
 }
 
 // :::::::::::::::::::::::::::: MyList ::::::::::::::::::::::::::::::::::::::
@@ -304,9 +304,9 @@ int MyList<T>::Remove() // LEHET BAKI BENNE!
 {
   if ( size==0 || !current ) return FAIL;
   MyListItem<T> *tmp=current->next;
-  if (current==first)  // elsã tîrlÇse
+  if (current==first)  // els≈ë t√∂rl√©se
     first=tmp;
-  if (!tmp) // utols¢ tîrlÇse
+  if (!tmp) // utols√≥ t√∂rl√©se
     tmp=last=first;
   delete current;  --size;
   current=tmp;
@@ -317,10 +317,10 @@ int MyList<T>::Remove() // LEHET BAKI BENNE!
 template <class T>
 T& MyList<T>::operator[] (size_t i)
 {
-  if ( i>size ) i=size; // sajnos NULL nem lehet lvalue, ezÇrt vmit mindenkÇpp vissza kell adni
+  if ( i>size ) i=size; // sajnos NULL nem lehet lvalue, ez√©rt vmit mindenk√©pp vissza kell adni
   MyListItem<T> *curr=first;
   for (size_t ii=0; ii<i ; ++ii || curr, curr=curr->next ) ;
-  assert( curr ); // ha minden adat O.K. akkor nem is kell ez az ellenãrzÇs
+  assert( curr ); // ha minden adat O.K. akkor nem is kell ez az ellen≈ërz√©s
   return *(curr->data);
 }
 
@@ -332,7 +332,7 @@ int MyList<T>::operator==(const MyList<T>& L) const
   if (size != L.size) return 0;
   MyListItem<T> *p,*pL;
   for (p=first,pL=L.first; *(p->data)==*(pL->data); p=p->next, pL=pL->next) ;
-  return (!p && !pL); // ha mind2-nek egyszerre lett vÇge, akkor voltak egyenlãek
+  return (!p && !pL); // ha mind2-nek egyszerre lett v√©ge, akkor voltak egyenl≈ëek
 }
 
 
@@ -368,32 +368,32 @@ class MyStack
 
   size_t GetSize()    const { return Lista.GetSize(); }
   size_t GetMaxSize() const { return max_size; }
-  void   Clear()            { Lista.Clear(); }          // öres()
-  bool   isEmpty()    const { return Lista.isEmpty(); } // öres?()
+  void   Clear()            { Lista.Clear(); }          // √úres()
+  bool   isEmpty()    const { return Lista.isEmpty(); } // √úres?()
   bool   isFull()     const // Tele-e()
-    { if (max_size) // ha van korl†t
+    { if (max_size) // ha van korl√°t
 	if (Lista.GetSize() >= max_size) return true; // megtelt
       return false;
     }
 
   int Push(const T&); // Verembe()
-  int Pop(T&);        // Verembãl()
+  int Pop(T&);        // Veremb≈ël()
 
-   T* Top() const         // Tetã()
+   T* Top() const         // Tet≈ë()
     { return Lista.Front(); }
 
   int operator==     (const MyStack<T>& Q) const  // Azonos?()
-    { return Lista==Q.Lista;  } // a max_size ÇrtÇkektãl eltekintÅnk
+    { return Lista==Q.Lista;  } // a max_size √©rt√©kekt≈ël eltekint√ºnk
 
   MyStack& operator= (const MyStack<T>&); // Verem = Verem1
 
-  void Print() const // Ki: Verem -- megj: "êrdekes", hogy a vermet anÇlkÅl °rhatjuk ki, hogy kiolvasn†nk
+  void Print() const // Ki: Verem -- megj: "√ârdekes", hogy a vermet an√©lk√ºl √≠rhatjuk ki, hogy kiolvasn√°nk
     { cout << *this; }
 
 };
 
 
-// :::::::::::::::::::::::::: GLOBµLIS FV-EK ::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::: GLOB√ÅLIS FV-EK ::::::::::::::::::::::::::::::::
 template <class T>
 ostream& operator<< (ostream& os,const MyStack<T>& ms)
 {
@@ -413,7 +413,7 @@ template <class T>
 int MyStack<T>::Pop(T& e)
 {
   if ( Lista.GetSize()<=0 ) return FAIL;
-  Lista.GoFront(); e=Lista.Value(); Lista.Remove(); // !!!: †ll°tja Lista.current-et
+  Lista.GoFront(); e=Lista.Value(); Lista.Remove(); // !!!: √°ll√≠tja Lista.current-et
   return SUCCESS;
 }
 
@@ -422,7 +422,7 @@ template <class T>
 MyStack<T>& MyStack<T>::operator= (const MyStack<T>& S)
 {
   if ( &S != this ) {
-    Lista = S.Lista;                     // Lista.operator=(MyList&) h°v†sa
+    Lista = S.Lista;                     // Lista.operator=(MyList&) h√≠v√°sa
     max_size =
       (!S.max_size || !max_size) ? 0 : max(S.max_size,max_size);
   }
@@ -435,11 +435,11 @@ class MySet
 {
  friend ostream& operator<< (ostream& os,const MySet<T>& ms);
  private:
-  size_t max_size; // a halmaz max. elemsz†ma
-    // size tag nem kell, mert uaz. lenne mint a tagoszt†ly (Lista) mÇrete
-  MyList<T> Lista; // list†ban t†roljuk a halmaz elemeit
+  size_t max_size; // a halmaz max. elemsz√°ma
+    // size tag nem kell, mert uaz. lenne mint a tagoszt√°ly (Lista) m√©rete
+  MyList<T> Lista; // list√°ban t√°roljuk a halmaz elemeit
 
- public: // max_size==0 esetÇn NINCS(!) korl†t:
+ public: // max_size==0 eset√©n NINCS(!) korl√°t:
   MySet(size_t maxsize=0)  : max_size(maxsize), Lista() {}
   MySet(const MySet<T>& H) : Lista(H.Lista), max_size (H.max_size) {} // copy-constructor
 
@@ -453,37 +453,37 @@ class MySet
     }
   bool   isEmpty()    const { return bool(Lista.GetSize()==0); }
   bool   isFull ()
-    { if (max_size) // ha van korl†t
+    { if (max_size) // ha van korl√°t
 	if (Lista.GetSize() >= max_size) return true; // hiba van: MEGTELT
       return false;
     }
 
   bool hasMember(const T& elem) const // benne van-e a halmazban?
     {  return bool(Lista.hasMember(elem)); }
-  MySet& Include  (const T& elem); // egy elemet hozz†ad
+  MySet& Include  (const T& elem); // egy elemet hozz√°ad
 				// u.ez lesz: MySet& operator+= (const T& elem)
-  MySet& Exclude  (const T& elem); // egy elemet tîrîl
+  MySet& Exclude  (const T& elem); // egy elemet t√∂r√∂l
 				// u.ez lesz: MySet& operator-= (const T& elem)
 
-  MySet& operator =  (const MySet<T>&); // ÇrtÇkad†s halmazzal
-  MySet  operator +  (      MySet<T>&); // uni¢      (nem const, mert MyList::operator()-ral v†ltoztatgatjuk a MySet::Lista.current-et)
-  MySet  operator -  (      MySet<T>&); // kÅlînbsÇg (uaz.)
-  int    operator == (const MySet<T>&); // kÇt halmaz egyenlã-e
+  MySet& operator =  (const MySet<T>&); // √©rt√©kad√°s halmazzal
+  MySet  operator +  (      MySet<T>&); // uni√≥      (nem const, mert MyList::operator()-ral v√°ltoztatgatjuk a MySet::Lista.current-et)
+  MySet  operator -  (      MySet<T>&); // k√ºl√∂nbs√©g (uaz.)
+  int    operator == (const MySet<T>&); // k√©t halmaz egyenl≈ë-e
 
   MySet  operator - (const T&); // halmaz - elem
   MySet  operator + (const T&); // halmaz + elem
-    // kell mÇg   T + MySet (elem + halmaz), amit HOL VAL‡S÷TANµNK MEG?   (!)
+    // kell m√©g   T + MySet (elem + halmaz), amit HOL VAL√ìS√çTAN√ÅNK MEG?   (!)
 
   MySet& operator += (const T&); // halmaz+=elem
   MySet& operator -= (const T&); // halmaz-=elem
 
-//  T* operator() (); // iter†tor
+//  T* operator() (); // iter√°tor
 
-  void Print() const // ki°rja az egÇsz halmazt a kÇpernyãre
+  void Print() const // ki√≠rja az eg√©sz halmazt a k√©perny≈ëre
     { cout << *this; }
 };
 
-// :::::::::::::::::::::::::: GLOBµLIS FV-EK ::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::: GLOB√ÅLIS FV-EK ::::::::::::::::::::::::::::::::
 template <class T>
 ostream& operator<< (ostream& os,const MySet<T>& ms)
 {
@@ -497,7 +497,7 @@ template <class T>
 MySet<T>& MySet<T>::Include(const T& elem)
 {
   if ( !isFull() && !Lista.hasMember(elem) )
-    Lista.PushBack(elem); // sikertelensÇgnÇl 0-t kellene visszaadni!!!
+    Lista.PushBack(elem); // sikertelens√©gn√©l 0-t kellene visszaadni!!!
   return *this;
 }
 
@@ -507,7 +507,7 @@ MySet<T>& MySet<T>::Exclude(const T& elem)
 {
   if ( 0<Lista.GetSize() )
     Lista.Remove(elem);
-//  return Lista.Remove(elem) ? SUCCESS : FAIL; // sikeressÇg
+//  return Lista.Remove(elem) ? SUCCESS : FAIL; // sikeress√©g
   return *this;
 }
 
@@ -516,7 +516,7 @@ template <class T>
 MySet<T>& MySet<T>::operator= (const MySet<T>& H)
 {
   if ( &H != this ) {
-    Lista = H.Lista;                     // Lista.operator=(MyList&) h°v†sa
+    Lista = H.Lista;                     // Lista.operator=(MyList&) h√≠v√°sa
     max_size =
       (!H.max_size || !max_size) ? 0 : max(H.max_size,max_size);
   }
@@ -527,10 +527,10 @@ MySet<T>& MySet<T>::operator= (const MySet<T>& H)
 template <class T>
 MySet<T> MySet<T>::operator+ (      MySet<T>& H)
 {
-  MySet unio(*this); // copy-construktor h°v¢dik meg
+  MySet unio(*this); // copy-construktor h√≠v√≥dik meg
   unio.max_size =
       (!H.max_size || !unio.max_size) ? 0 : H.max_size+unio.max_size;
-  // a MyList oszt†ly iter†tor†t haszn†ljuk fel az egyes elemek elÇrÇsÇhez:
+  // a MyList oszt√°ly iter√°tor√°t haszn√°ljuk fel az egyes elemek el√©r√©s√©hez:
   T *p;
   Lista.GoFront();
   while ( p=H.Lista() ) {
@@ -543,12 +543,12 @@ MySet<T> MySet<T>::operator+ (      MySet<T>& H)
 template <class T>
 MySet<T> MySet<T>::operator- (      MySet<T>& H)
 {
-  MySet metszet(*this); // ebbãl vonjuk ki azokat az elemeket amelyek H-ban is megvannak
+  MySet metszet(*this); // ebb≈ël vonjuk ki azokat az elemeket amelyek H-ban is megvannak
   metszet.max_size =
     (!H.max_size || !metszet.max_size) ? 0 : max(H.max_size,metszet.max_size);
   T *p;
 #ifdef DEBUG
-  cout << "MySet<T> MySet<T>::operator-  (const MySet<T>& H) <<  h°v†sa\n";
+  cout << "MySet<T> MySet<T>::operator-  (const MySet<T>& H) <<  h√≠v√°sa\n";
 #endif
   H.Lista.GoFront();
   while ( p=H.Lista() ) {
@@ -573,7 +573,7 @@ int MySet<T>::operator== (const MySet<T>& H)
   Lista.GoFront();
   while ( p=Lista() ) {
     if ( !H.hasMember(*p) )
-      return 0; // ha van ami nincs benne a m†sikban, akkor nem egyenlãk
+      return 0; // ha van ami nincs benne a m√°sikban, akkor nem egyenl≈ëk
   }
   return 1;
 }
@@ -617,9 +617,9 @@ template <class T>
 class MyQueue
 {
  protected:
-  size_t max_size; // a halmaz max. elemsz†ma
-    // size tag nem kell, mert uaz. lenne mint a tagoszt†ly (Lista) mÇrete
-  MyList<T> Lista; // v†ltozatoss†g kedvÇÇrt itt is egy list†t deleg†lunk
+  size_t max_size; // a halmaz max. elemsz√°ma
+    // size tag nem kell, mert uaz. lenne mint a tagoszt√°ly (Lista) m√©rete
+  MyList<T> Lista; // v√°ltozatoss√°g kedv√©√©rt itt is egy list√°t deleg√°lunk
 
  public:
   MyQueue(size_t maxsize=0)  : max_size(maxsize), Lista() {}
@@ -628,29 +628,29 @@ class MyQueue
 
   size_t GetSize()    const { return Lista.GetSize(); }
   size_t GetMaxSize() const { return max_size; }
-  void   Clear()            { Lista.Clear(); }          // öres()
-  bool   isEmpty()    const { return Lista.isEmpty(); } // öres-e()
+  void   Clear()            { Lista.Clear(); }          // √úres()
+  bool   isEmpty()    const { return Lista.isEmpty(); } // √úres-e()
   bool   isFull()     const // Tele-e()
-    { if (max_size) // ha van korl†t
+    { if (max_size) // ha van korl√°t
 	if (Lista.GetSize() >= max_size) return true; // megtelt
       return false;
     }
 
-   T*    Front() const         // Elsã() - az elsã elem ÇrtÇke
+   T*    Front() const         // Els≈ë() - az els≈ë elem √©rt√©ke
     { return Lista.Front(); }
 
   virtual int operator== (const MyQueue<T>& Q) const
-    { return Lista==Q.Lista;  } // a max_size ÇrtÇkektãl eltekintÅnk
-  virtual int Push(const T& e);    // Sorba(e) // vissza: sikeressÇg
+    { return Lista==Q.Lista;  } // a max_size √©rt√©kekt≈ël eltekint√ºnk
+  virtual int Push(const T& e);    // Sorba(e) // vissza: sikeress√©g
 				   // u.ez lesz: MyQueue::operator+ (MyQueue)
-  virtual int Pop(T& e);   // Sorb¢l(e) : e-be °rja a sor elsã elemÇt Çs tîrli is a sorb¢l// vissza: sikeressÇg
+  virtual int Pop(T& e);   // Sorb√≥l(e) : e-be √≠rja a sor els≈ë elem√©t √©s t√∂rli is a sorb√≥l// vissza: sikeress√©g
 
   void   Print() const // Ki: Sor
     { Lista.Print(); } // uez. lesz: friend ostream& operator(ostream& os, const MySet&)
 
   MyQueue& operator= (const MyQueue<T>& Q); // Sor = Sor1
 
-  virtual int Remove(const T& e); // Elt†vol°tSorb¢l(e) // vissza: h†ny volt benne
+  virtual int Remove(const T& e); // Elt√°vol√≠tSorb√≥l(e) // vissza: h√°ny volt benne
 };
 
 // :::::::::::::::::::::::::::::::: MyQueue :::::::::::::::::::::::::::::::::
@@ -658,7 +658,7 @@ template <class T>
 int MyQueue<T>::Push(const T& e)
 {
   if ( isFull() ) return FAIL;
-  return Lista.PushBack(e); // sikeressÇg
+  return Lista.PushBack(e); // sikeress√©g
 }
 
 // :::::::::::::::::::::::::::::::: MyQueue :::::::::::::::::::::::::::::::::
@@ -666,7 +666,7 @@ template <class T>
 int MyQueue<T>::Pop(T& e)
 {
   if ( Lista.GetSize()<=0 ) return FAIL;
-  Lista.GoFront(); e=Lista.Value(); Lista.Remove(); // !!!: †ll°tja Lista.current-et
+  Lista.GoFront(); e=Lista.Value(); Lista.Remove(); // !!!: √°ll√≠tja Lista.current-et
   return SUCCESS;
 }
 
@@ -675,7 +675,7 @@ template <class T>
 MyQueue<T>& MyQueue<T>::operator= (const MyQueue<T>& Q)
 {
   if ( &Q != this ) {
-    Lista = Q.Lista;                     // Lista.operator=(MyList&) h°v†sa
+    Lista = Q.Lista;                     // Lista.operator=(MyList&) h√≠v√°sa
     max_size =
       (!Q.max_size || !max_size) ? 0 : max(Q.max_size,max_size);
   }
@@ -690,22 +690,22 @@ int MyQueue<T>::Remove(const T& e)
 }
 
 // -------------------------- MyPriorityQueue -------------------------------
-// Priorit†si sor,  priorit†s szerinti †br†zol†ssal:
+// Priorit√°si sor,  priorit√°s szerinti √°br√°zol√°ssal:
 template <class T,class Pr>
 class MyPriorityQueue : public MyQueue< MyPriorityQueueItem< T,Pr > >
 {
  public:
   MyPriorityQueue(size_t maxsize=0) : MyQueue< MyPriorityQueueItem< T,Pr > >(maxsize)
-    {} // kÇsz.
+    {} // k√©sz.
   MyPriorityQueue(const MyPriorityQueue< T,Pr >& PQ) : MyQueue< MyPriorityQueueItem< T, Pr> >(PQ)
-    {} // kÇsz.
+    {} // k√©sz.
   ~MyPriorityQueue() {}
 
-  // Azt akarom, hogy az al†bbi îrîkîlt fv-ek itt ne m˚kîdjenek:
+  // Azt akarom, hogy az al√°bbi √∂r√∂k√∂lt fv-ek itt ne m≈±k√∂djenek:
 			    T*  Front()              { return 0; }
 			    int Push(const T& e)     { return FAIL; }
 			    int Pop (T& e)           { return FAIL; }
-  // HelyettÅk:
+  // Helyett√ºk:
 //  Pr* FrontPriority() { return &(MyQueue< MyPriorityQueueItem< T,Pr > >::Front()->priority); }
 //  T*  FrontValue()    { return &(MyQueue< MyPriorityQueueItem< T,Pr > >::Front()->data); }
     Pr* FrontPriority() { return (MyQueue< MyPriorityQueueItem< T,Pr > >::Front()->GetpPriority()); }
@@ -715,39 +715,39 @@ class MyPriorityQueue : public MyQueue< MyPriorityQueueItem< T,Pr > >
 
   int operator==     (const MyPriorityQueue<T,Pr>&) const; // ezt
 
-  int Remove(const T& e); // Elt†vol°tPrSorb¢l(e)
+  int Remove(const T& e); // Elt√°vol√≠tPrSorb√≥l(e)
 
 };
 
 // :::::::::::::::::::::::::::: MyPriorityQueue :::::::::::::::::::::::::::::
 template <class T,class Pr>
 int MyPriorityQueue<T,Pr>::Push(const T& e,const Pr& pr)
-{ // !!! sajnos itt explicit hivatkoz†s kell MyQueue::Lista-ra
+{ // !!! sajnos itt explicit hivatkoz√°s kell MyQueue::Lista-ra
   if (isFull()) return FAIL;
   MyPriorityQueueItem<T,Pr> uj(e,pr);
-  return Lista.InsertBehind(uj); // rendezett besz£r†s az utols¢ azonos ÇrtÇk˚ elem mîgÇ
+  return Lista.InsertBehind(uj); // rendezett besz√∫r√°s az utols√≥ azonos √©rt√©k≈± elem m√∂g√©
 }
 
 // :::::::::::::::::::::::::::: MyPriorityQueue :::::::::::::::::::::::::::::
 template <class T,class Pr>
 int MyPriorityQueue<T,Pr>::Pop (T& e,Pr& pr)
-{ // !!! sajnos itt explicit hivatkoz†s kell MyQueue::Lista-ra
+{ // !!! sajnos itt explicit hivatkoz√°s kell MyQueue::Lista-ra
   if ( Lista.GetSize()<=0 ) return FAIL;
   Lista.GoFront();
   e =Lista.Value().data;
   pr=Lista.Value().priority;
-  Lista.Remove(); // !!!: †ll°tja Lista.current-et
+  Lista.Remove(); // !!!: √°ll√≠tja Lista.current-et
   return SUCCESS;
 }
 
 // :::::::::::::::::::::::::::: MyPriorityQueue :::::::::::::::::::::::::::::
 template <class T,class Pr>
 int MyPriorityQueue<T,Pr>::operator== (const MyPriorityQueue<T,Pr>& PQ) const
-{ // !!! sajnos itt explicit hivatkoz†s kell MyQueue::Lista-ra
+{ // !!! sajnos itt explicit hivatkoz√°s kell MyQueue::Lista-ra
   if (this == &PQ) return 1;
   if (Lista.GetSize() != PQ.GetSize()) return 0;
   MyPriorityQueueItem<T,Pr> *p,*pPQ;
-  Lista.GoFront(); PQ.Lista.GoFront(); // sajnos ezek †ll°tj†k MyList::current-et
+  Lista.GoFront(); PQ.Lista.GoFront(); // sajnos ezek √°ll√≠tj√°k MyList::current-et
   p=Lista(); pPQ=PQ.Lista();
   while (p && pPQ) {
 #ifdef DEBUG
@@ -758,23 +758,23 @@ int MyPriorityQueue<T,Pr>::operator== (const MyPriorityQueue<T,Pr>& PQ) const
     if ( p->priority != pPQ->priority ) return 0;
     p=Lista(); pPQ=PQ.Lista();
   }
-  return !p && !pPQ; // ha mindkettãnek egyszerre lett vÇge, akkor voltak egyenlãek
+  return !p && !pPQ; // ha mindkett≈ënek egyszerre lett v√©ge, akkor voltak egyenl≈ëek
 }
 
 // :::::::::::::::::::::::::::: MyPriorityQueue :::::::::::::::::::::::::::::
 template <class T,class Pr>
 int MyPriorityQueue<T,Pr>::Remove(const T& e)
 {
- // ProblÇma: a listaelemek kîzîtti rel†ci¢k a priorit†sok kîzîtti rel†ci¢kat
+ // Probl√©ma: a listaelemek k√∂z√∂tti rel√°ci√≥k a priorit√°sok k√∂z√∂tti rel√°ci√≥kat
  // jelentik, (mivel a MyList a MyPriorityQueueItem<T,Pr>-rel lett
- // paramÇterezve °gy nem h°vhat¢ egyszerÅen csak a Lista.Remove(e)
- // Helyette vÇgig kell seperni a list†n Çs a ->data ÇrtÇkeket vizsg†lni csak:
+ // param√©terezve √≠gy nem h√≠vhat√≥ egyszer√ºen csak a Lista.Remove(e)
+ // Helyette v√©gig kell seperni a list√°n √©s a ->data √©rt√©keket vizsg√°lni csak:
 
   if ( Lista.GetSize()<1 ) return 0;
   size_t db=0;
   MyList< MyPriorityQueueItem<T,Pr> > UjLista;
   MyPriorityQueueItem<T,Pr> *p;
-  Lista.GoFront(); // sajnos ez †ll°tja MyList::current-et
+  Lista.GoFront(); // sajnos ez √°ll√≠tja MyList::current-et
   p=Lista();
   while (p) {
     if ( p->data == e ) ++db;
