@@ -15,7 +15,7 @@
 
 template <class T,class Pr> class MyPriorityQueueItem;
 template <class T,class Pr> class MyPriorityQueue; // elődeklaráció
-template <class T> class MyQueue;
+template <class T> class MyQueue; //
 template <class T> class MyStack;
 template <class T> class MyList;
 template <class T> class MyListItem;
