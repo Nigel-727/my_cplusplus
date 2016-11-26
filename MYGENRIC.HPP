@@ -1,6 +1,6 @@
 /* MYGENRIC.HPP // Saját generikus adatszerkezetek template-tel
 *	Írta: Bakk Zoltán <nigel@valerie.inf.elte.hu>
- *		1999. május 27-től
+ *		1999. május 27-től //
 *  Környezet: DOS; >>>>>>>>> Fordítható: Borland C++3.1;
  */
 
